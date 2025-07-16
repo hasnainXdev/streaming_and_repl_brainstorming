@@ -4,7 +4,6 @@ from agents import (
     Agent,
     ItemHelpers,
     Runner,
-    function_tool,
     OpenAIChatCompletionsModel,
     RunConfig,
 )
