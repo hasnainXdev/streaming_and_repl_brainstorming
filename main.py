@@ -6,7 +6,6 @@ from agents import (
     Runner,
     function_tool,
     OpenAIChatCompletionsModel,
-    set_tracing_disabled,
     RunConfig,
 )
 from openai import AsyncOpenAI
@@ -37,23 +36,23 @@ config = RunConfig(
 )
 
 
-@function_tool
-def how_many_jokes() -> int:
-    return random.randint(1, 10)
+# @function_tool
+# def how_many_jokes() -> int:
+#     return random.randint(1, 10)
 
 
 
 async def main():
     agent = Agent(
-        name="Joker",
-        instructions="First call the `how_many_jokes` tool, then tell that many jokes.",
-        tools=[how_many_jokes],
+        name="Assistent",
+        instructions="You are a assistant!",
     )
 
     result = Runner.run_streamed(
         agent,
         input="Hello",
         run_config=config,
+        max_turns=2
     )
     print("=== Run starting ===")
 

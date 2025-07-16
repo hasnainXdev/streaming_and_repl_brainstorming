@@ -1,10 +1,12 @@
 import asyncio
-from agents import Agent, run_demo_loop, OpenAIChatCompletionsModel, RunConfig
+from agents import Agent, run_demo_loop, OpenAIChatCompletionsModel, RunConfig, set_tracing_disabled
 from openai import AsyncOpenAI
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
+set_tracing_disabled(disabled=True)
 
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 
@@ -30,6 +32,7 @@ async def main() -> None:
     agent = Agent(
         name="Assistant",
         instructions="You are a helpful assistant.",
+        model=model
     )
     await run_demo_loop(agent)
 
